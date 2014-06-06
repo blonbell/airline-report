@@ -1,0 +1,67 @@
+﻿input[type="text"] {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+
+    border-radius: 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+
+input[type="text"]:focus {
+    border-color: #F93c3c;
+    box-shadow: 0 0 8px #f93c3c;
+    outline: 0 none;
+}
+
+.subjectText {
+    width:150px; 
+    text-align:right; 
+    font-size:larger;
+}
+
+.subjectValue {
+    padding-left:10px;
+    width:100px;
+}
+
+.divReportStyle > div, .divAggReportStyle > div {
+    float:right;
+}
+
+div.h45 {
+    font-weight:bold;
+    font-size: large;
+    padding-bottom:5px;
+}
+
+.divReportStyle {
+    float:left;
+    border-style: double; 
+    border-color: inherit; 
+    border-width: medium; 
+    width: 270px; 
+    height:285px; 
+    padding:10px;
+}
+
+.divAggReportStyle {
+    float:left;
+    margin-left: 50px;
+    border-style: double; 
+    border-color: inherit; 
+    border-width: medium; 
+    width: 230px; 
+    height:300px; 
+    padding:10px;
+}
+
+body {
+}

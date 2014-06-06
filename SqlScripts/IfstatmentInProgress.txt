@@ -1,0 +1,17 @@
+use ReportingDB;
+
+DECLARE @Name varchar(50);
+SET @Name = 'Jon Show';
+DECLARE @ClientId int;
+SET @ClientId = (Select ID from TClient where name = @Name);
+
+IF @ClientId IS NOT NULL 
+	BEGIN
+		SELECT * FROM dbo.Tclient order by id;
+	END
+ELSE 
+	BEGIN
+		INSERT INTO [dbo].[TClient] ([Name])
+		VALUES (@Name)
+		PRINT SCOPE_IDENTITY(); 
+	END

@@ -1,0 +1,22 @@
+create procedure dbo.AddClientToInvoice
+@Invoice nvarchar(50), 
+@Name nvarchar(50), 
+@AccountReceivable decimal(18,2), 
+@AccountPayable decimal(18,2), 
+@comments nvarchar(50), 
+@paid bit
+as
+begin
+DECLARE @ClientId int;
+SET @ClientId = (Select ID from [dbo].TClient where name = @Name);
+
+IF @ClientId IS NULL 
+	BEGIN
+		INSERT INTO [dbo].[TClient] ([Name])
+		VALUES (@Name)
+		SET @ClientId = SCOPE_IDENTITY();
+	END
+
+INSERT INTO [dbo].[AggInvoiceClient] (Invoice, ClientId, AccountReceivable, AccountPayable, comments, paid)
+		values (@Invoice, @ClientId, @AccountReceivable, @AccountPayable, @comments, @paid)	
+end
