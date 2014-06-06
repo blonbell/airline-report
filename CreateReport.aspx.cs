@@ -153,7 +153,7 @@ public partial class Reporting : System.Web.UI.Page {
     }
 
     public String convertNumbersToChinese(String numberStr) {
-        if (chkChing.Checked)
+        if (false)
             return numberStr.Replace('0','零').
                 Replace('1','一').
                 Replace('2','二').

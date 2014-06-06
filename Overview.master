@@ -4,16 +4,46 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <asp:ContentPlaceHolder id="head" runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="css/MasterPageStyleSheet.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <asp:ContentPlaceHolder id="headContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+    <form id="master" class="form-horizontal" role="form" runat="server">
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="Administration.aspx">Airline Accounting</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="view-li"><a href="CreateReport.aspx">View Report</a></li>
+                        <li id="insr-li"><a href="InsertEntry.aspx">Insert Entries</a></li>
+                        <li id="util-li"><a href="Utility.aspx">Utilities</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container jumbotron">
+            <asp:ContentPlaceHolder id="bodyContent" runat="server">
         
-        </asp:ContentPlaceHolder>
-    </div>
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
+    
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

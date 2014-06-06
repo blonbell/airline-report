@@ -1,14 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CreateReport.aspx.cs" Inherits="Reporting" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Overview.master" AutoEventWireup="true" CodeFile="CreateReport.aspx.cs" Inherits="Reporting" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Reporting Menu</title>
-
-    <link href="css/MasterPageStyleSheet.css" rel="stylesheet" type="text/css" />
+<asp:Content ID="homeHead" ContentPlaceHolderID="headContent" Runat="Server">
+    <title>AirlineAccounting - Report Generator</title>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="js/dialogFunc.js"></script>
     <script type="text/javascript">
@@ -24,70 +18,15 @@
             });
         });
     </script>
-</head>
-<body>
-    <h1>Reporting Page</h1><br>
+</asp:Content>
 
-    <form id="form1" runat="server">
-        <div id="payDialog-block" title="Pay Invoice"></div>
-        <div id="viewDialog-block" title="View Comments"></div>
-        <div id="addDialog-block" title="Add Client To Invoice">  
-            <div>
-                Create an AR or AP associated with this invoice.
-            </div>
-            <hr>    
-            <table style="padding-left:10px;">
-                <tr>
-                    <td align="right">
-                        Invoice #: 
-                    </td>
-                    <td>
-                        <asp:TextBox ID="dialogInvoice" runat="server" BackColor="#79EAAC" ></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Client Name:
-                    </td>
-                    <td>
-                        <asp:TextBox ID="dialogClientName" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <asp:RadioButtonList ID="rblAccountType" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Value="R">Receivable</asp:ListItem>
-                            <asp:ListItem Value="P">Payable</asp:ListItem>
-                        </asp:RadioButtonList>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        Amount: 
-                    </td>
-                    <td>
-                        <asp:TextBox ID="dialogAmount" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        Comment:
-                    </td>
-                    <td>
-                        <asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine" Rows="3" Columns="30"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <asp:CheckBox ID="cbxPaid" runat="server" Text="Paid Already" />
-                    </td>
-                </tr>
-            </table>
-            <asp:Button ID="SubmitPayButton" runat="server" Text="Pay" CssClass="greyButton" 
-                OnClick="SubmitPayButton_Click" UseSubmitBehavior="False" />
-        </div>
-            
-        <div id="divSummaryBox" class="crSummaryDiv" visible="false" runat="server">
+<asp:Content ID="homeBody" ContentPlaceHolderID="bodyContent" Runat="Server">
+    <div class="row">
+        <h1>View Report</h1>
+        <asp:Label ID="DoneMsg" CssClass="text-success" runat="server" Text=""></asp:Label>
+    </div>
+
+    <div id="divSummaryBox" class="crSummaryDiv" visible="false" runat="server">
             <h2>Summary</h2>
             <a id ="toggleMinimize" class="topRightStick smallFont miniButton">Min/Max [x]</a>
             <div id="botPanel">
@@ -137,52 +76,97 @@
                 </div>
             </div>
         </div>
+    <div id="payDialog-block" title="Pay Invoice"></div>
+    <div id="viewDialog-block" title="View Comments"></div>
+    <div id="addDialog-block" title="Add Client To Invoice">  
+        <div>
+            Create an AR or AP associated with this invoice.
+        </div>
+        <hr>    
+        <table style="padding-left:10px;">
+            <tr>
+                <td align="right">
+                    Invoice #: 
+                </td>
+                <td>
+                    <asp:TextBox ID="dialogInvoice" runat="server" BackColor="#79EAAC" ></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Client Name:
+                </td>
+                <td>
+                    <asp:TextBox ID="dialogClientName" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <asp:RadioButtonList ID="rblAccountType" runat="server" RepeatDirection="Horizontal">
+                        <asp:ListItem Value="R">Receivable</asp:ListItem>
+                        <asp:ListItem Value="P">Payable</asp:ListItem>
+                    </asp:RadioButtonList>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Amount: 
+                </td>
+                <td>
+                    <asp:TextBox ID="dialogAmount" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Comment:
+                </td>
+                <td>
+                    <asp:TextBox ID="CommentBox" runat="server" TextMode="MultiLine" Rows="3" Columns="30"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <asp:CheckBox ID="cbxPaid" runat="server" Text="Paid Already" />
+                </td>
+            </tr>
+        </table>
+        <asp:Button ID="SubmitPayButton" runat="server" Text="Pay" CssClass="greyButton" 
+            OnClick="SubmitPayButton_Click" UseSubmitBehavior="False" />
+    </div>
 
-        <asp:Label ID="DoneMsg" runat="server" Text=""></asp:Label>
+    <div id="leftPanel" class="row col-sm-4 col-xs-6 bg-success">
+        <div id="filtersDiv">
+            <h2>Reporting Filters</h2>
+            <div class="form-group text-info">
+                <asp:Label id="lblStartDatePicker" CssClass="col-xs-4 control-label" runat="server" Text="Start Date" for="txtStartDate"></asp:Label>
+                <div class="col-xs-6">
+                    <asp:TextBox ID="txtStartDate" CssClass="form-control UIDateClass" runat="server" AutoPostBack="True"></asp:TextBox>
+                </div>
+            </div>
+            <div class="form-group text-info">
+                <asp:Label id="lblEndDatePicker" CssClass="col-xs-4 control-label" runat="server" Text="End Date" for="txtEndDate"></asp:Label>
+                <div class="col-xs-6">
+                    <asp:TextBox ID="txtEndDate" CssClass="form-control UIDateClass" runat="server"  AutoPostBack="True" ></asp:TextBox>
+                </div>
+            </div>
+            <div class="form-group text-info">
+                <asp:Label ID="rpLabel" CssClass="col-xs-4 control-label" runat="server" Text="Choose Client" for="ddlClients"/>
+                <div class="col-xs-6">
+                    <asp:DropDownList ID="ddlClients" CssClass="form-control" runat="server" DataSourceID="ClientDataSource" 
+                        DataTextField="Name" DataValueField="Id" AutoPostBack="True">
+                    </asp:DropDownList>
+                </div>
+                <asp:SqlDataSource ID="ClientDataSource" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:ReportingDBConnectionString %>" 
+                    SelectCommand="SELECT [Name], [Id] FROM [TClient] ORDER BY [Name]">
+                </asp:SqlDataSource>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
 
-        <asp:Button ID="GoBack" runat="server" Text="Back" PostBackUrl="~/Administration.aspx" />
-        
-        <fieldset>
-            <legend>
-                Reporting Filters
-            </legend>
-
-            <div id="datePicker" style="float:left; width:100%;">
-                <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                Transaction Start Date
-                            </td>
-                            <td>
-                                End Date
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <asp:TextBox ID="txtStartDate" runat="server" CssClass="UIDateClass" AutoPostBack="True" ></asp:TextBox>
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="txtEndDate" runat="server" CssClass="UIDateClass" AutoPostBack="True" ></asp:TextBox>
-                                </td>
-                            </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="rpPickerDiv" style="float:left; margin-top:20px; width:100%;">
-                <asp:Label ID="rpLabel" runat="server" Text="Choose Receivable/Payable: " />
-                <asp:DropDownList ID="ddlClients" runat="server" DataSourceID="ClientDataSource" DataTextField="Name" DataValueField="Id" AutoPostBack="True">
-                </asp:DropDownList>
-                <asp:SqlDataSource ID="ClientDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ReportingDBConnectionString %>" SelectCommand="SELECT [Name], [Id] FROM [TClient] ORDER BY [Name]"></asp:SqlDataSource>
-            </div>
-            <div>
-                <asp:CheckBox ID="chkChing" runat="server" Text="Chingify" />
-            </div>
-        </fieldset>
-        <br><br><br> 
-        <asp:GridView ID="ReportGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="Invoice" DataSourceID="ReportingSource" AllowSorting="True" ShowFooter="True" OnRowDataBound="ReportGridView_RowDataBound">
+    <div id="rightPanel" class="row table-responsive">
+        <asp:GridView ID="ReportGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="Invoice" DataSourceID="ReportingSource"  AllowSorting="True" ShowFooter="True" OnRowDataBound="ReportGridView_RowDataBound">
             <Columns>
                 <asp:TemplateField HeaderText="Add Client">
                     <ItemTemplate>
@@ -212,12 +196,12 @@
                 <asp:TemplateField HeaderText="Pro/Loss">
                     <ItemTemplate>
                         <%# convertNumbersToChinese(calcTotal(Eval("CommissionAirline"),
-                                      Eval("CommissionAgent"),
-                                      Eval("AccountReceivable"),
-                                      Eval("AccountPayable"),
-                                      Eval("Rebate"),
-                                      Eval("GSTCollected"), 
-                                      Eval("GSTPaid"))) %>
+                                        Eval("CommissionAgent"),
+                                        Eval("AccountReceivable"),
+                                        Eval("AccountPayable"),
+                                        Eval("Rebate"),
+                                        Eval("GSTCollected"), 
+                                        Eval("GSTPaid"))) %>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
@@ -227,24 +211,23 @@
             <FooterStyle BackColor="#C2F1BA" />
             <HeaderStyle BackColor="Gray" />
         </asp:GridView>
-        <asp:SqlDataSource ID="ReportingSource" runat="server" ConnectionString="<%$ ConnectionStrings:ReportingDBConnectionString %>" SelectCommand="SelectReport" SelectCommandType="StoredProcedure" OnSelected="ReportingSource_Selected">
-            <SelectParameters>
-                <asp:SessionParameter DbType="String" Name="StartDate" SessionField="startDate" />
-                <asp:SessionParameter DbType="String" Name="EndDate" SessionField="endDate" />
-                <asp:SessionParameter Name="ClientId" SessionField="clientId" Type="String" />
-            </SelectParameters>
-        </asp:SqlDataSource>
+    </div>
+    <asp:SqlDataSource ID="ReportingSource" runat="server" ConnectionString="<%$ ConnectionStrings:ReportingDBConnectionString %>" SelectCommand="SelectReport" SelectCommandType="StoredProcedure" OnSelected="ReportingSource_Selected">
+        <SelectParameters>
+            <asp:SessionParameter DbType="String" Name="StartDate" SessionField="startDate" />
+            <asp:SessionParameter DbType="String" Name="EndDate" SessionField="endDate" />
+            <asp:SessionParameter Name="ClientId" SessionField="clientId" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
-        <asp:SqlDataSource ID="AddClientSource" runat="server" ConnectionString="<%$ ConnectionStrings:ReportingDBConnectionString %>" InsertCommand="AddClientToInvoice" InsertCommandType="StoredProcedure" SelectCommand="SELECT AggInvoiceClient.* FROM AggInvoiceClient">
-            <InsertParameters>
-                <asp:Parameter Name="Invoice" Type="String" />
-                <asp:Parameter Name="Name" Type="String" />
-                <asp:Parameter Name="AccountReceivable" Type="Decimal" />
-                <asp:Parameter Name="AccountPayable" Type="Decimal" />
-                <asp:Parameter Name="comments" Type="String" />
-                <asp:Parameter Name="paid" Type="Boolean" />
-            </InsertParameters>
-        </asp:SqlDataSource>
-    </form>
-</body>
-</html>
+    <asp:SqlDataSource ID="AddClientSource" runat="server" ConnectionString="<%$ ConnectionStrings:ReportingDBConnectionString %>" InsertCommand="AddClientToInvoice" InsertCommandType="StoredProcedure" SelectCommand="SELECT AggInvoiceClient.* FROM AggInvoiceClient">
+        <InsertParameters>
+            <asp:Parameter Name="Invoice" Type="String" />
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="AccountReceivable" Type="Decimal" />
+            <asp:Parameter Name="AccountPayable" Type="Decimal" />
+            <asp:Parameter Name="comments" Type="String" />
+            <asp:Parameter Name="paid" Type="Boolean" />
+        </InsertParameters>
+    </asp:SqlDataSource>
+</asp:Content>

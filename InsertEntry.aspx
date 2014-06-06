@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Insert Entry</title>
+    <title>AirlineAccounting - Insert Entry</title>
     <link href="css/MasterPageStyleSheet.css" rel="stylesheet" type="text/css" />
     <link href="css/InsertEntry.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />

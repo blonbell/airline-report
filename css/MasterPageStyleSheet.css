@@ -1,4 +1,16 @@
-﻿.redOut {
+﻿/* bootstrap */
+
+h2.panel-title {
+    font-size: 2em;
+}
+
+/* bootstrap end*/
+
+div#rightPanel {
+    margin-top:60px;
+}
+
+.redOut {
 	background: #FF99EE;
 }
 
@@ -35,14 +47,14 @@ a.miniButton:hover {
 .crSummaryDiv {
     position:fixed; 
     right: 10px; 
-    top: 10px; 
+    top: 50px; 
     width:550px; 
     background-color: lightcoral;
     overflow: hidden;
     padding-bottom:10px;
     padding-left:10px;
 }
-
+    
 .firstIndent {
     padding-left:30px;
 }
